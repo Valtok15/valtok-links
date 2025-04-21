@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Свяжитесь с Вальток</title>
+    <title>Работа в Вальток</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e6f0fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #4DA8DA 0%, #1a3c5e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -17,32 +17,66 @@
             position: relative;
             overflow: hidden;
         }
-        body::before {
-            content: '';
+        .wave-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 200%;
             height: 100%;
             background: url('https://www.transparenttextures.com/patterns/wavey-folds.png');
-            opacity: 0.1;
-            z-index: 0;
-            animation: moveWaves 20s linear infinite;
+            opacity: 0.2;
+            animation: moveWaves 15s linear infinite;
         }
         @keyframes moveWaves {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+        .bubble {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: riseBubble 5s infinite ease-in-out;
+        }
+        .bubble:nth-child(1) { left: 15%; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 50%; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 80%; animation-delay: 1s; }
+        @keyframes riseBubble {
+            0% { transform: translateY(100vh); opacity: 0.5; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heat-glow {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: radial-gradient(circle at bottom, rgba(255, 111, 97, 0.3) 0%, transparent 70%);
+            animation: glowHeat 3s infinite ease-in-out;
+        }
+        @keyframes glowHeat {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0.3; }
+        }
         .container {
-            background: #ffffff;
-            padding: 40px;
+            background: linear-gradient(135deg, #e6f0fa 0%, #a0c4ff 100%);
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 500px;
             width: 90%;
             position: relative;
             z-index: 1;
+        }
+        @media (max-width: 400px) {
+            .container {
+                padding: 20px;
+            }
+            h1 { font-size: 24px; }
+            .button { font-size: 16px; padding: 12px 25px; }
         }
         .wave {
             position: absolute;
@@ -53,21 +87,30 @@
         }
         .wave-top { top: -20px; }
         .wave-bottom { bottom: -20px; }
-        .icon {
-            width: 60px;
+        .drop-container {
+            position: relative;
+            height: 60px;
             margin-bottom: 20px;
-            animation: sway 2s infinite ease-in-out;
         }
-        @keyframes sway {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
+        .drop {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            animation: fall 2.5s infinite ease-in-out;
+        }
+        .drop:nth-child(1) { left: 40%; animation-delay: 0s; }
+        .drop:nth-child(2) { left: 50%; animation-delay: 0.5s; }
+        .drop:nth-child(3) { left: 60%; animation-delay: 1s; }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 1; }
+            80% { transform: translateY(40px); opacity: 0.5; }
+            100% { transform: translateY(40px); opacity: 0; }
         }
         h1 {
             color: #1a3c5e;
             font-size: 28px;
             margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 0 10px rgba(77, 168, 218, 0.5);
             animation: scaleIn 1s ease-in-out;
         }
         @keyframes scaleIn {
@@ -76,8 +119,13 @@
         }
         .subtitle {
             color: #FF6F61;
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 20px;
+            animation: fadeInSubtitle 1.5s ease-in-out;
+        }
+        @keyframes fadeInSubtitle {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         p {
             color: #555;
@@ -98,16 +146,32 @@
             border-radius: 8px;
             transition: transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: bounce 1s ease-in-out;
+            position: relative;
+            animation: pulse 2s infinite ease-in-out;
         }
-        @keyframes bounce {
-            0% { transform: translateY(20px); opacity: 0; }
-            50% { transform: translateY(-10px); opacity: 1; }
-            100% { transform: translateY(0); opacity: 1; }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+        }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .button:hover::before {
+            opacity: 0.5;
         }
         .button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         .button img {
             width: 24px;
@@ -125,10 +189,16 @@
             color: #1a3c5e;
             margin-top: 5px;
         }
+        .divider {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #4DA8DA, transparent);
+            margin: 20px auto;
+        }
         .footer {
             color: #1a3c5e;
             font-size: 14px;
-            margin-top: 20px;
+            margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -141,10 +211,19 @@
     </style>
 </head>
 <body>
+    <div class="wave-bg"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="heat-glow"></div>
     <div class="container">
         <div class="wave wave-top"></div>
-        <img src="https://img.icons8.com/ios-filled/60/1a3c5e/water-and-fire.png" alt="Water and Fire Icon" class="icon">
-        <h1>Свяжитесь с Вальток</h1>
+        <div class="drop-container">
+            <img src="https://img.icons8.com/ios-filled/50/1a3c5e/water.png" alt="Drop Icon" class="drop">
+            <img src="https://img.icons8.com/ios-filled/50/1a3c5e/water.png" alt="Drop Icon" class="drop">
+            <img src="https://img.icons8.com/ios-filled/50/1a3c5e/water.png" alt="Drop Icon" class="drop">
+        </div>
+        <h1>Работа в Вальток: вода и тепло</h1>
         <div class="subtitle">Работа в сфере воды и тепла</div>
         <p>Выберите мессенджер для связи:</p>
         <div class="button-container">
@@ -159,12 +238,12 @@
                 <img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png" alt="Telegram Icon">
                 Перейти в Telegram
             </a>
-            <span class="button-label">Поддержка 24/7</span>
         </div>
+        <div class="divider"></div>
         <div class="footer">
-            <img src="https://img.icons8.com/ios-filled/20/FFD700/water.png" alt="Water Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2165/2165003.png" alt="Water Icon" style="width: 20px;">
             Вальток — надёжный партнёр в сфере водоснабжения и отопления
-            <img src="https://img.icons8.com/ios-filled/20/FFD700/fire.png" alt="Fire Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/785/785116.png" alt="Fire Icon" style="width: 20px;">
         </div>
         <div class="wave wave-bottom"></div>
     </div>
